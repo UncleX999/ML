@@ -1,0 +1,39 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# 创建虚构数据集
+X = np.array([1400, 1600, 1700, 1875, 1100, 1550, 2350, 2450, 1425, 1700]).reshape(-1, 1)
+Y = np.array([245000, 312000, 279000, 308000, 199000, 219000, 405000, 324000, 319000, 255000])
+
+# 创建线性回归模型
+model = LinearRegression()
+
+# 拟合模型
+model.fit(X, Y)
+
+# 获取回归系数
+beta_0 = model.intercept_
+beta_1 = model.coef_[0]
+
+print(f"截距 (beta_0): {beta_0}")
+print(f"斜率 (beta_1): {beta_1}")
+
+
+# 绘制散点图
+plt.scatter(X, Y, color='blue', label='Actual Data')
+
+# 绘制拟合线
+plt.plot(X, model.predict(X), color='red', linewidth=2, label='Fitted Line')
+
+
+# 添加标签和标题
+plt.xlabel('House Area')
+plt.ylabel('House Price')
+plt.title('Simple Linear Regression Example')
+
+# 添加图例
+plt.legend()
+
+# 显示图形
+plt.show()
